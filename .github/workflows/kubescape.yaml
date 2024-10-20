@@ -17,7 +17,15 @@ jobs:
       - name: Install Kubescape
         run: |
           curl -s https://raw.githubusercontent.com/armosec/kubescape/master/install.sh | /bin/bash
-          echo 'export PATH=$PATH:$HOME/.kubescape/bin' >> $GITHUB_ENV
+
+      - name: Set Kubescape Path
+        run: echo 'PATH=$PATH:$HOME/.kubescape/bin' >> $GITHUB_ENV
+
+      - name: List Kubescape Directory
+        run: ls -al $HOME/.kubescape/bin
+
+      - name: List YAML Files
+        run: ls -al *.yaml
 
       - name: Scan YAML Files
         run: kubescape scan framework nsa *.yaml
